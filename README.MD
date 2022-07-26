@@ -2,8 +2,6 @@
 
 ## Aplicacion CRUD
 
-### **Cliente**: Consultoria Empresarial en Agronegocios SA de CV
-
 Se busca ofrecer una aplicacion para manipulacion de registros proporcionadas por un usuario:
 
 - Creacion
