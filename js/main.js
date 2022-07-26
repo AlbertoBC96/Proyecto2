@@ -1,4 +1,5 @@
 let lastID = 0
+employees = []
 
 class Employee{
     constructor(id,name, email, role){
@@ -36,6 +37,38 @@ class Registros{
         if (this.indexEmployee >= this.employees.length) {
             this.indexEmployee = 0;
         }
+        let section = document.createElement('tr')
+        let indexNumber = document.createElement('th')
+        let elementName = document.createElement('td')
+        let elementEmail = document.createElement('td')
+        let elementRole = document.createElement('td')
+        let elementButtons = document.createElement('td')
+
+        let editButton = document.createElement('a')
+        editButton.href = '#'
+        editButton.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>'
+        
+        let deleteButton = document.createElement('a')
+        deleteButton.href = '#'
+        deleteButton.innerHTML = '<i class="fa-solid fa-trash" style="color:red"></i>'
+
+        indexNumber.innerHTML = this.employees[this.indexEmployee].id
+        indexNumber.scope = 'row'
+
+        elementName.innerHTML = this.employees[this.indexEmployee].name
+        elementEmail.innerHTML = this.employees[this.indexEmployee].email
+        elementRole.innerHTML = this.employees[this.indexEmployee].role
+        
+        elementButtons.appendChild(editButton)
+        elementButtons.append(' / ')
+        elementButtons.appendChild(deleteButton)
+
+        section.appendChild(indexNumber)
+        section.appendChild(elementName)
+        section.appendChild(elementEmail)
+        section.appendChild(elementRole)
+        section.appendChild(elementButtons)
+        document.getElementById('employeeTable').appendChild(section);
         console.log(this.employees[this.indexEmployee])
     }
 
@@ -49,9 +82,8 @@ class Registros{
 
     syncEmployee(){
         window.localStorage.setItem('employees',JSON.stringify(employees))
-        // this.employees = JSON.parse(window.localStorage.getItem('employees'))
+        this.employees = JSON.parse(window.localStorage.getItem('employees'))
     }
 }
 
-employees = []
 myEmployees = new Registros(employees)
