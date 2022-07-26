@@ -1,3 +1,5 @@
+let lastID = 0
+
 class Employee{
     constructor(id,name, email, role){
         this.id = id
@@ -7,20 +9,26 @@ class Employee{
     }
 }
 
-class registros{
+class Registros{
     constructor(employees = [], targetID){
-        this.employee = employee
+        this.employees = employees
         this.indexEmployee = 0
     }
 
     saveEmployee(){
-        employeeName = document.getElementById("inputName").value
-        employeeMail = document.getElementById("inptEmail").value
-        employeeRole = document.getElementById("inputRole").value
-        const newEmployee = new Employee(lastID,employeeName,employeeMail,employeeRole)
+        let employeeName = document.getElementById("inputName").value
+        let employeeMail = document.getElementById("inputEmail").value
+        let employeeRole = document.getElementById("inputRole").value
+        lastID ++
+        let newEmployee = new Employee(lastID,employeeName,employeeMail,employeeRole)
+
         employees.push(newEmployee)
         this.syncEmployee()
         this.addEmployee(newEmployee)
+        
+        document.getElementById("inputName").value = ''
+        document.getElementById("inputEmail").value = ''
+        document.getElementById("inputRole").value = ''
     }
 
     addEmployee(){
@@ -41,6 +49,9 @@ class registros{
 
     syncEmployee(){
         window.localStorage.setItem('employees',JSON.stringify(employees))
-        employees = JSON.parse(window.localStorage.getItem('employees'))
+        // this.employees = JSON.parse(window.localStorage.getItem('employees'))
     }
 }
+
+employees = []
+myEmployees = new Registros(employees)
