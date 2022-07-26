@@ -46,10 +46,12 @@ class Registros{
 
         let editButton = document.createElement('a')
         editButton.href = '#'
+        editButton.addEventListener('click',this.editEmployee)
         editButton.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>'
         
         let deleteButton = document.createElement('a')
         deleteButton.href = '#'
+        deleteButton.addEventListener('click',this.deleteEmployee)
         deleteButton.innerHTML = '<i class="fa-solid fa-trash" style="color:red"></i>'
 
         indexNumber.innerHTML = this.employees[this.indexEmployee].id
@@ -63,6 +65,7 @@ class Registros{
         elementButtons.append(' / ')
         elementButtons.appendChild(deleteButton)
 
+        section.setAttribute("id",this.indexEmployee)
         section.appendChild(indexNumber)
         section.appendChild(elementName)
         section.appendChild(elementEmail)
@@ -74,9 +77,11 @@ class Registros{
 
     editEmployee(){
         console.log("Editar registro")
+        $('#editModal').modal('show');
     }
 
     deleteEmployee(){
+        alert('delete clicked')
         console.log("Eliminar regstro")
     }
 
